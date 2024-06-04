@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base { 
+  .light-theme { 
+    --purple: #6C63FF;
+    --font-color: #000000; 
+    --background: #F7F7F7; 
+  }
+  .dark-theme { 
+    --purple: #6C63FF;
+    --font-color: #ffffff; 
+    --background: #252525; 
+  }
+  
+  .trans { 
+    @apply transition-all duration-200;
+  }
+  .marked { 
+    @apply absolute w-full top-0 h-[2px] left-0 bg-black
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
