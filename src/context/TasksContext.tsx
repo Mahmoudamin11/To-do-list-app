@@ -70,9 +70,6 @@ function TasksContext({ children }: child) {
     const getFilterCond = () => { 
         return filterCond ; 
     }
-
-    
-
     const toggleAddNewTask = () => { 
         let input = document.getElementById("newTaskInput") as HTMLInputElement
         if (newTask == 1) {
