@@ -47,7 +47,6 @@ function TasksContext({ children }: child) {
         let inCompArr = new Array();
         for(let i = 0 ; i < inCompleteTasksString.length ; i++) { 
             inCompArr.push(<IncompleteTask task={inCompleteTasksString[i]} />)
-            console.log("number");
         }
         for(let i = 0 ; i < completeTasksString.length ; i++) { 
             compArr.push(<CompletedTask task={completeTasksString[i]} />)
@@ -71,14 +70,23 @@ function TasksContext({ children }: child) {
     const getFilterCond = () => { 
         return filterCond ; 
     }
+
+    
+
     const toggleAddNewTask = () => { 
+        let input = document.getElementById("newTaskInput") as HTMLInputElement
         if (newTask == 1) {
             setaddNewTask(0);
+            input.readOnly = true ;
+            
         }
         else { 
             setaddNewTask(1);
+            input.focus();
+            input.readOnly = false ;
         }
     }
+
     const getAddNewTask = () => { 
         return newTask ; 
     }

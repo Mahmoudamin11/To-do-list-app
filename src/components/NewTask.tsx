@@ -4,6 +4,18 @@ import { useTask } from "../context/TasksContext"
 const NewTask = ({theme}:any) => {
     const {toggleAddNewTask , getAddNewTask, addNewTask, getInCompTasks} = useTask();
     const [showError, setshowError] = useState("")
+    let input = document.getElementById("newTaskInput") as HTMLInputElement;
+    if (input) { 
+        input.addEventListener('keypress', function (event) { 
+            if (event.key === "Enter") { 
+                event.preventDefault();
+                let apply = document.getElementById("apply") as HTMLInputElement ; 
+                apply.click();
+                input.style.borderColor = "var(--purple)";
+                setshowError("");
+            }
+        })
+    }
     const createTask = () => { 
         let input  = document.getElementById("newTaskInput") as HTMLInputElement;
         let val = input.value ; 
@@ -45,13 +57,13 @@ const NewTask = ({theme}:any) => {
             <h2 className="text-font-color font-bold text-2xl">New Task</h2>
             <div className="flex flex-col gap-4">
                 <div className="flex flex-col ">
-                    <input autoFocus={true} id="newTaskInput" type="text"  placeholder='Add a new task...' maxLength={60}
+                    <input autoFocus id="newTaskInput" type="text"  placeholder='Add a new task...' maxLength={60}
                     className={`text-font-color px-3 py-2 outline-none border-solid bg-background ${ !theme ? "hover:bg-gray-200 focus:bg-gray-200" : "hover:bg-zinc-700 focus:bg-zinc-700"} trans border-[1px] border-purple rounded-md w-[250px] min-[380px]:w-[300px] min-[490px]:w-[400px] min-[630px]:w-[550px] `} />
                     <p id="empty-task" className=" text-red-500  mt-1 invisible ">{showError}</p>
                 </div>
                 <div className="w-full flex justify-between items-center">
                     <button onClick={closeNewTaskScreen} className={`text-purple border-[1px] border-solid border-purple font-bold px-3 py-2 rounded-md trans ${!theme ? "hover:bg-gray-200 focus:bg-gray-200" : "hover:bg-zinc-700 focus:bg-zinc-700"} `}>Cancel</button>
-                    <button onClick={createTask} className="text-white font-bold px-3 py-2 bg-purple  rounded-md trans hover:opacity-90">Apply</button>
+                    <button id="apply" onClick={createTask} className="text-white font-bold px-3 py-2 bg-purple  rounded-md trans hover:opacity-90">Apply</button>
                 </div>
             </div>
         </div>
